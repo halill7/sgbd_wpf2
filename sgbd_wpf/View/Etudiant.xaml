@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Page_Navigation_App.View.Etudiant"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:sgbd_wpf.vue" xmlns:vue_modele="clr-namespace:sgbd_wpf.vue_modele" d:DataContext="{d:DesignInstance Type=vue_modele:GestionEtudiantVueModele}"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622">
+
+    <Grid>
+
+        <StackPanel VerticalAlignment="Center" >
+            <DataGrid ItemsSource="{Binding CollectionEtudiantt}"
+          AutoGenerateColumns="False"
+          Name="GrilleLivres"
+          AlternatingRowBackground="LightGray"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Height="200"
+          Width="400"
+          ScrollViewer.VerticalScrollBarVisibility="Auto"
+          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+          SelectionChanged="GrilleLivres_SelectionChanged"
+          BorderBrush="#FF2196F3"
+          BorderThickness="1" Background="White">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF2196F3"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Idpersonne" Binding="{Binding Idpersonne}" />
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+                    <DataGridTextColumn Header="Sexe" Binding="{Binding Sexe}" />
+                    <DataGridTextColumn Header="GSM" Binding="{Binding Gsm}" />
+                    <DataGridTextColumn Header="Rue" Binding="{Binding Rue}" />
+                    <DataGridTextColumn Header="Code postal" Binding="{Binding Codepostal}" />
+                    <DataGridTextColumn Header="Localité" Binding="{Binding Localite}" />
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                </DataGrid.Columns>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+
+
+                    <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Nom" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                  Text="{Binding Nom, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Prenom" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3" 
+                  Text="{Binding Prenom, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Sexe" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                  Text="{Binding Sexe, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Gsm" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                  Text="{Binding Gsm, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="1">
+
+                    <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Rue" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                  Text="{Binding Rue, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Codepostal" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                  Text="{Binding Codepostal, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Localite" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                  Text="{Binding Localite, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Email" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10"  Padding="3"
+                  Text="{Binding Email, Mode=TwoWay,
+             UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+
+
+            <Button Margin ="10" Command="{Binding Click_Ajouter_Etudiant}" 
+             Content="Ajouter" HorizontalAlignment="Center" Foreground="Black" Background="#FF008DB1" />
+            
+            
+            
+
+
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

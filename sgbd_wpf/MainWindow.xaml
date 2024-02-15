@@ -1,0 +1,320 @@
+﻿<Window x:Class="Page_Navigation_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Page_Navigation_App.ViewModel"
+        xmlns:Menu="clr-namespace:Page_Navigation_App.Utilities"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="600"
+        Width="850"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <!-- Style personnalisé pour les boutons sans fond -->
+        <Style x:Key="FullScreenButtonStyle" TargetType="{x:Type Button}">
+
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="40" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="15,15,0,0" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderThickness="0">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                               
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+
+
+
+
+        <!--// Window Border //-->
+
+        <Border Background="#212529"
+                CornerRadius="20" />
+
+        <Grid>
+
+            <!--// Base Grid //-->
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228" />
+                <ColumnDefinition Width="622" />
+            </Grid.ColumnDefinitions>
+
+            <!--// Navigation Panel //-->
+
+            <Grid HorizontalAlignment="Left"
+                  Width="228">
+
+                <Border Background="#272B2F"
+                        CornerRadius="20,0,0,20" />
+
+                <StackPanel
+                            Width="228" Margin="0,100,0,-1">
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Définissez la largeur automatique pour le texte -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Définissez la largeur automatique pour l'image -->
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="EFPLManager" Grid.Column="1"
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           Foreground="#7289DA"
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Top" 
+                           Margin="34,-91,0,0" RenderTransformOrigin="0.418,0.595" />
+
+                    </Grid>
+
+
+
+
+     
+
+                    <!--// Etudiant //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding HomeCommand}"
+                              IsChecked="True">
+
+                        <Grid Margin="0,10,0,0">
+
+                            <Image Source="Images/student.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Etudiant"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Professeur //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding CustomersCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/prof.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Professeur"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Section //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding ProductsCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/sections.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Section"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Ue //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding OrdersCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/enseignement-creatif.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Ue"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Personne //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding TransactionsCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/utilisateur.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Personne"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Seance //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding ShipmentsCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/seance.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Seance"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Inscription //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/inscription.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Inscription"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+
+                    <!--// Participation //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding ParticipationCommand}" Height="60">
+
+                        <Grid>
+
+                            <Image Source="Images/participation.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Participation"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                        
+                    </Menu:Btn>
+
+
+
+
+                        
+                        
+                        <Menu Background="White" Foreground="#FFDBDBDB" BorderBrush="White" Width="229">
+                        <Menu.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </Menu.ItemsPanel>
+
+                        <MenuItem Header="Lister"  Template="{StaticResource Menu_SubMenu_Template}" Margin="0,0,1,0" Click="MenuItem_Click" FontSize="18">
+                            <MenuItem.Icon>
+                                <Image Source="Images/controle.png"  />
+                            </MenuItem.Icon>
+
+                            <MenuItem Header="Ue->section" Command="{Binding ListUeSectionCommand}" Template="{StaticResource Item_Template}">
+                                <MenuItem.Icon>
+                                    <Image Source="Images/.png" Stretch="None" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+
+                            <MenuItem Header="Etu->UeAca" Command="{Binding ParticipationCommand}" Template="{StaticResource Item_Template}">
+                                <MenuItem.Icon>
+                                    <Image Source="Images/.png" Stretch="None" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem Header="Pre->Ue" Command="{Binding ParticipationCommand}" Template="{StaticResource Item_Template}">
+                                <MenuItem.Icon>
+                                    <Image Source="Images/.png" Stretch="None" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem Header="Ue->Etu" Command="{Binding ParticipationCommand}" Template="{StaticResource Item_Template}">
+                                <MenuItem.Icon>
+                                    <Image Source="Images/.png" Stretch="None" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+
+
+
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentView}" />
+
+            </Grid>
+
+        </Grid>
+
+        
+            <!-- Bouton pour fermer l'application à droite -->
+            <Button x:Name="CloseApp"
+            Style="{StaticResource ExitApp}"
+            Click="CloseApp_Click" RenderTransformOrigin="0.895,0.44" Margin="0,0,10,0"/>
+
+            <!-- Bouton pour basculer en plein écran à gauche -->
+            <Button x:Name="Max"
+                Style="{StaticResource MaxBtnStyle}"
+                Click="ToggleFullScreen_Click" Margin="0,0,50,0" Width="40" Height="40" />
+
+        
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="Page_Navigation_App.View.Ue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:Page_Navigation_App.ViewModel"
+             xmlns:local="clr-namespace:sgbd_wpf.vue" xmlns:vue_modele="clr-namespace:sgbd_wpf.vue_modele"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}"
+             d:DataContext="{d:DesignInstance Type=vue_modele:GestionUeVueModele}">
+
+    <UserControl.DataContext>
+        <vm:OrderVM />
+    </UserControl.DataContext>
+
+    <Grid>
+
+        <StackPanel VerticalAlignment="Center" >
+            <TextBlock Text="UE" FontSize="12" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DataGrid ItemsSource="{Binding CollectionUe}"
+      AutoGenerateColumns="False"
+      Name="GrilleLivres"
+      AlternatingRowBackground="LightGray"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center"
+      Height="200"
+      Width="500"
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+      BorderBrush="#FF2196F3"
+      BorderThickness="1">
+
+                <DataGrid.ColumnHeaderStyle>
+
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF2196F3"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Idue" Binding="{Binding Idue}" />
+                    <DataGridTextColumn Header="Libelle" Binding="{Binding Libelle}" />
+                    <DataGridTextColumn Header="Nbreperiodes" Binding="{Binding Nbreperiodes}" />
+                    <DataGridTextColumn Header="Section" Binding="{Binding Section}" />
+                </DataGrid.Columns>
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+
+
+
+            <TextBlock Text="UEACADEMIQUE" Foreground="White" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DataGrid ItemsSource="{Binding CollectionUeAca}"
+            AutoGenerateColumns="False"
+
+            AlternatingRowBackground="LightGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Height="200"
+            Width="500"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            BorderBrush="#FF2196F3"
+            BorderThickness="1">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF2196F3"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Idue" Binding="{Binding Idue}" />
+                    <DataGridTextColumn Header="Datedebut" Binding="{Binding DateDebut}" />
+                    <DataGridTextColumn Header="Datefin" Binding="{Binding DateFin}" />
+                </DataGrid.Columns>
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <StackPanel Orientation="Horizontal">
+
+
+                        <TextBlock Margin="10" Width="80" Text="Libelle" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="150"  Margin ="10" Padding="3"
+                      Text="{Binding Libelle, Mode=TwoWay,
+                 UpdateSourceTrigger=LostFocus}" />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+
+
+                        <TextBlock Margin="10" Width="80" Text="Nbreperiodes" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="150"  Margin ="10" Padding="3"
+                     Text="{Binding Nbreperiodes, Mode=TwoWay,
+                UpdateSourceTrigger=LostFocus}" />
+
+                    </StackPanel>
+
+
+
+                    <StackPanel Orientation="Horizontal">
+
+
+                        <TextBlock Margin="10" Width="80" Text="Section" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="150"  Margin ="10" Padding="3"
+                         Text="{Binding Section, Mode=TwoWay,
+                    UpdateSourceTrigger=LostFocus}" />
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Width="80" Text="Idue" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="150"  Margin ="10" Padding="3"
+                         Text="{Binding Idue, Mode=TwoWay,
+                    UpdateSourceTrigger=LostFocus}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Width="80" Text="Datedebut" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="150"  Margin ="10" Padding="3"
+                         Text="{Binding DateDebut, Mode=TwoWay,
+                    UpdateSourceTrigger=LostFocus}" TextChanged="TextBox_TextChanged" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Width="80" Text="Datefin" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="150"  Margin ="10" Padding="3"
+                         Text="{Binding DateFin, Mode=TwoWay,
+                    UpdateSourceTrigger=LostFocus}" />
+                    </StackPanel>
+
+                </StackPanel>
+
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Colonne pour le bouton de gauche -->
+                    <ColumnDefinition/>
+                    <!-- Colonne pour le bouton de droite -->
+                </Grid.ColumnDefinitions>
+
+                <Button Command="{Binding Click_Ajouter_Ue}" 
+            Content="Ajouter une UE" Foreground="Black" Background="#FF008DB1" Margin="142,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"/>
+
+                <Button Command="{Binding Click_Ajouter_UeAca}" 
+            Content="Ajouter une UE académique" Foreground="Black" Background="#FF008DB1" 
+            HorizontalAlignment="Left" Margin="424,5,0,5"
+            Grid.Column="1" RenderTransformOrigin="0.333,0.555"/>
+            </Grid>
+
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Page_Navigation_App.View.Participation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Page_Navigation_App.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+
+        <StackPanel VerticalAlignment="Center" >
+            <DataGrid ItemsSource="{Binding CollectionParticipation}"
+         AutoGenerateColumns="False"
+         AlternatingRowBackground="LightGray"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         Height="200"
+         Width="500"
+         ScrollViewer.VerticalScrollBarVisibility="Auto"
+         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+         BorderBrush="#FF2196F3"
+         BorderThickness="1">
+
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF2196F3"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Idue" Binding="{Binding Idue}" />
+                    <DataGridTextColumn Header="Idpersonne" Binding="{Binding Idpersonne}" />
+                    <DataGridTextColumn Header="Idseance" Binding="{Binding Idseance}" />
+                    <DataGridTextColumn Header="Statut" Binding="{Binding Statut}" />
+                </DataGrid.Columns>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+
+
+            <Grid>
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+
+                <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Idue" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                     Text="{Binding Idue, Mode=TwoWay,
+                UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Idpersonne" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                     Text="{Binding Idpersonne, Mode=TwoWay,
+                UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+
+                <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Idseance" FontWeight="Light" Foreground="White"/>
+                <TextBox Width="120"  Margin ="10" Padding="3"
+                     Text="{Binding Idseance, Mode=TwoWay,
+                UpdateSourceTrigger=LostFocus}" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBlock Margin="10" Width="80" Text="Statut" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="120"  Margin ="10" Padding="3"
+                     Text="{Binding Statut, Mode=TwoWay,
+                UpdateSourceTrigger=LostFocus}" />
+                    </StackPanel>
+            </StackPanel>
+            </Grid>
+
+
+
+
+    <Button Margin ="10" Command="{Binding Click_Ajouter_Participation}" 
+    Content="Ajouter" HorizontalAlignment="Center" Foreground="Black" Background="#FF008DB1" />
+
+
+        </StackPanel>
+    </Grid>
+</UserControl>
