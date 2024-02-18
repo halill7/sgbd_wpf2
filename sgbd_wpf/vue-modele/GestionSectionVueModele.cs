@@ -82,7 +82,6 @@ namespace sgbd_wpf.vue_modele
             listSection = this.monBD.ListeSection();
             DataTable dt = new DataTable();
 
-            dt.Columns.Add("IdSection");
             dt.Columns.Add("Libelle");
 
             // prépare la liste des section à afficher 
@@ -91,14 +90,13 @@ namespace sgbd_wpf.vue_modele
                 while (listSection.Count > 0)
                 {
                     DataRow dr = dt.NewRow();
-                    dr["IdSection"] = listSection[0].IdSection;
                     dr["Libelle"] = listSection[0].Libelle;
                     dt.Rows.Add(dr);
                     listSection.RemoveAt(0);
                 }
 
                 DataView dv = new DataView(dt);
-                dv.Sort = "IdSection DESC";
+           
                 CollectionSection = dv;
 
 
@@ -108,35 +106,8 @@ namespace sgbd_wpf.vue_modele
 
 
 
-        // propriété effectuer: contenu du bouton d'action
 
-        public string effectuer;
-        public string Effectuer
-        {
-            get { return this.effectuer; }
-            set
-            {
-                this.effectuer = value;
-                OnPropertyChanged("Effectuer");
-            }
-        }
 
-        /*public void Modifier(int indexSelection)
-        {
-            IdPersonne =
-                collectionEtudiant.ElementAt(indexSelection).IdPersonne;
-            Nom = collectionEtudiant.ElementAt(indexSelection).Nom;
-            Prenom = collectionEtudiant.ElementAt(indexSelection).Prenom;
-            GSM = collectionEtudiant.ElementAt(indexSelection).Gsm;
-            Rue = collectionEtudiant.ElementAt(indexSelection).Rue;
-            CP = collectionEtudiant.ElementAt(indexSelection).Codepostal;
-            Localite =
-                collectionEtudiant.ElementAt(indexSelection).Localite;
-
-            // Mise à jour du bouton d'action
-            this.Effectuer = "Effectuer la modification";
-
-        }*/
 
         // Cette méthode met à vide les champs de la personne à modifier 
         private void Clear_personne()
@@ -148,16 +119,9 @@ namespace sgbd_wpf.vue_modele
 
         // Cette méthode est utlisée lorsqu'on clique sur le bouton d'action
 
-        // méthode utilisée lorsqu'on clique sur le bouton Ajouter
 
-        public void Ajouter()
-        {
-            // Met les champs de la nouvelle personne à vide
-            this.Clear_personne();
 
-            // Mise à jour du bouton d'action
-            this.Effectuer = "Effectuer l'ajout";
-        }
+
 
 
 

@@ -15,17 +15,13 @@ using System.Windows.Shapes;
 
 namespace View
 {
-    /// <summary>
-    /// Interaction logic for Section.xaml
-    /// </summary>
-    /// Section
-    public partial class Section : UserControl
+
+    public partial class Seance : UserControl
     {
-        // section
-        public Section()
+        public Seance()
         {
             InitializeComponent();
-            this.DataContext = new sgbd_wpf.vue_modele.GestionSectionVueModele();
+            this.DataContext = new sgbd_wpf.vue_modele.GestionSeanceVueModele();
         }
     }
 }

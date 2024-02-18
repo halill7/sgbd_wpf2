@@ -1,5 +1,4 @@
-﻿
-using Utilities;
+﻿using Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-     class ParticipationVM : ViewModelBase
-     {
-        
-     }
+    class ListPresenceUeVM : ViewModelBase
+    {
+    }
 }

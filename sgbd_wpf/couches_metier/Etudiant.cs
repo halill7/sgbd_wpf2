@@ -43,6 +43,14 @@ namespace projet_sgbd.couches_metier
         }
 
 
+
+        public Etudiant(int idpersonne, string nom, string prenom, string email)
+    : base(idpersonne, nom, prenom)
+        {
+            this.email = email;
+        }
+
+
         public int Idpersonne
         {
             set { this.idpersonne = value; }

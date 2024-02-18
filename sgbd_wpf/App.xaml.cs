@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Page_Navigation_App
+namespace sgbd_wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml

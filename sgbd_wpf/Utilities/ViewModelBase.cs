@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Page_Navigation_App.Utilities
+namespace Utilities
 {
     class ViewModelBase : INotifyPropertyChanged
     {

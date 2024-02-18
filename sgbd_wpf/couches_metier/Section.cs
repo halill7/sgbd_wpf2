@@ -28,6 +28,13 @@ namespace projet_sgbd.couches_metier
 
         }
 
+
+        public Section(string libelle)
+        {
+            this.libelle = libelle;
+
+        }
+
         public string Libelle
         {
             set

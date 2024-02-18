@@ -1,4 +1,5 @@
-﻿using System;
+﻿using sgbd_wpf.vue_modele;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Page_Navigation_App.View
+namespace View
 {
     /// <summary>
-    /// Interaction logic for Transactions.xaml
+    /// Logique d'interaction pour ListResultatUe.xaml
     /// </summary>
-    /// Personne
-    public partial class Transactions : UserControl
+    public partial class ListResultatUe : UserControl
     {
-        public Transactions()
+        public ListResultatUe()
         {
             InitializeComponent();
-            this.DataContext = new sgbd_wpf.vue_modele.GestionPersonneVueModele();
+            this.DataContext = new ListerResultatUeVueModele();
         }
     }
 }

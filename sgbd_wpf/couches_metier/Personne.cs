@@ -46,6 +46,14 @@ namespace projet_sgbd.couches_metier
             this.localite = localite;
         }
 
+
+        public Personne(int idpersonne, string nom, string prenom)
+        {
+            this.idPersonne = idpersonne;
+            this.nom = nom;
+            this.prenom = prenom;
+        }
+
         public int IdPersonne
         {
             set

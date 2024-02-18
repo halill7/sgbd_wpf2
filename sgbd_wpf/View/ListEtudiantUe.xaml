@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="View.ListUeSection"
+﻿<UserControl x:Class="View.ListEtudiantUe"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,19 +8,19 @@
     <Grid>
 
         <StackPanel VerticalAlignment="Center" >
-            <TextBlock Text="Lister les UE en fonction d'une section donné" FontSize="12" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <DataGrid ItemsSource="{Binding CollectionUe}"
-  AutoGenerateColumns="False"
-  Name="GrilleLivres"
-  AlternatingRowBackground="LightGray"
-  HorizontalAlignment="Center"
-  VerticalAlignment="Center"
-  Height="200"
-  Width="500"
-  ScrollViewer.VerticalScrollBarVisibility="Auto"
-  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-  BorderBrush="#FF2196F3"
-  BorderThickness="1">
+            <TextBlock Text="Liste des étudiants en fonction de leur ue pour une année académique donnée" FontSize="12" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DataGrid ItemsSource="{Binding Collectionetudiantlist}"
+AutoGenerateColumns="False"
+Name="GrilleLivres"
+AlternatingRowBackground="LightGray"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Height="200"
+Width="500"
+ScrollViewer.VerticalScrollBarVisibility="Auto"
+ScrollViewer.HorizontalScrollBarVisibility="Auto"
+BorderBrush="#FF2196F3"
+BorderThickness="1">
 
                 <DataGrid.ColumnHeaderStyle>
 
@@ -33,10 +33,10 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Idue" Binding="{Binding Idue}" />
-                    <DataGridTextColumn Header="Libelle" Binding="{Binding Libelle}" />
-                    <DataGridTextColumn Header="Nbreperiodes" Binding="{Binding Nbreperiodes}" />
-                    <DataGridTextColumn Header="Section" Binding="{Binding Section}" />
+                    <DataGridTextColumn Header="Idpersonne" Binding="{Binding Idpersonne}" />
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                    <DataGridTextColumn Header="Prenom" Binding="{Binding Prenom}" />
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
                 </DataGrid.Columns>
 
                 <DataGrid.RowStyle>
@@ -50,7 +50,7 @@
 
 
 
-           
+
 
 
             <Grid>
@@ -64,10 +64,20 @@
                     <StackPanel Orientation="Horizontal">
 
 
-                        <TextBlock Margin="10" Width="80" Text="Section" FontWeight="Light" Foreground="White"/>
+                        <TextBlock Margin="10" Width="80" Text="Idue" FontWeight="Light" Foreground="White"/>
                         <TextBox Width="150"  Margin ="10" Padding="3"
-                     Text="{Binding Section, Mode=TwoWay,
-                UpdateSourceTrigger=LostFocus}" />
+                   Text="{Binding Idue, Mode=TwoWay,
+              UpdateSourceTrigger=LostFocus}" />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+
+
+                        <TextBlock Margin="10" Width="80" Text="Année" FontWeight="Light" Foreground="White"/>
+                        <TextBox Width="150"  Margin ="10" Padding="3"
+                   Text="{Binding DateFin, Mode=TwoWay,
+              UpdateSourceTrigger=LostFocus}" />
 
                     </StackPanel>
 
@@ -78,11 +88,11 @@
 
 
 
-            <Button Command="{Binding Click_Lister_Ue}" 
-        Content="Lister les Ue" Foreground="Black" Background="#FF008DB1" Margin="142,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Button Command="{Binding Click_Lister_Etudiant_Ue}" 
+      Content="Lister les etudiants" Foreground="Black" Background="#FF008DB1" Margin="142,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"/>
 
 
-           
+
 
 
         </StackPanel>

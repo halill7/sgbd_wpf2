@@ -637,9 +637,9 @@ namespace projet_sgbd.couches_access_db
                     do
                     {
                         liste.Add(new Section(
-                                              Convert.ToString(sqlreader["libelle"]),
-                                              Convert.ToString(sqlreader["idsection"])
-                                                ));
+                                              Convert.ToString(sqlreader["libelle"])
+                                              )
+                                                );
                     } while (sqlreader.Read());
                 }
                 sqlreader.Close();
@@ -1250,6 +1250,67 @@ namespace projet_sgbd.couches_access_db
             return liste;
         }
 
+
+
+        // Méthode qui va lister les étudiants en fonction de l'ue donné et une année académique donné
+        /* Liste les étudiants en fonction de l'année académique en cours
+         * 
+         * Entrée: 
+         * Un idue et la date de fin
+         * Sortie : 
+         * Un entier qui confirme la réussite ou l'échec de la méthode
+         */
+        public List<Etudiant> ListeEtudiantUeAnneeAcademique(int idue, DateTime datefin)
+        {
+            List<Etudiant> liste = null;
+            List<Inscription> inscription = null;
+            NpgsqlCommand sqlCmd = new NpgsqlCommand();
+            NpgsqlCommand sqlCmd2 = new NpgsqlCommand();
+
+            try
+            {
+                sqlCmd = new NpgsqlCommand("SELECT * " +
+                           "FROM INSCRIPTION i " +
+                           "JOIN UEACADEMIQUE u ON i.idue = u.idue " +
+                           "JOIN ETUDIANT e ON i.idpersonne = e.idpersonne " +
+                       "WHERE u.idue = :idue AND u.datefin = :datefin", this.SqlConn);
+                // Parametres
+                sqlCmd.Parameters.Add(new NpgsqlParameter("idue", NpgsqlTypes.NpgsqlDbType.Integer));
+                sqlCmd.Parameters.Add(new NpgsqlParameter("datefin", NpgsqlTypes.NpgsqlDbType.Date));
+
+
+                // Commande
+                /*sqlCmd.Prepare();*/
+
+
+                sqlCmd.Parameters[0].Value = idue;
+                sqlCmd.Parameters[1].Value = datefin;
+
+                NpgsqlDataReader sqlreader = sqlCmd.ExecuteReader();
+                if (sqlreader.Read())
+                {
+                    liste = new List<Etudiant>();
+                    do
+                    {
+                        liste.Add(new Etudiant(Convert.ToInt32(sqlreader["idpersonne"]),
+                                               Convert.ToString(sqlreader["nom"]),
+                                               Convert.ToString(sqlreader["prenom"]),
+                                               Convert.ToString(sqlreader["email"])));
+                    } while (sqlreader.Read());
+                }
+                sqlreader.Close();
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new ExceptionAccessBD(sqlCmd.CommandText, ex);
+
+
+            }
+            return liste;
+        }
 
         /* Liste la liste des présence des étudiants en fonction de l'idue
          * 

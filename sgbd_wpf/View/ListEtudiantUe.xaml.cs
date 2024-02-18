@@ -16,16 +16,14 @@ using System.Windows.Shapes;
 namespace View
 {
     /// <summary>
-    /// Interaction logic for Section.xaml
+    /// Logique d'interaction pour ListEtudiantUe.xaml
     /// </summary>
-    /// Section
-    public partial class Section : UserControl
+    public partial class ListEtudiantUe : UserControl
     {
-        // section
-        public Section()
+        public ListEtudiantUe()
         {
             InitializeComponent();
-            this.DataContext = new sgbd_wpf.vue_modele.GestionSectionVueModele();
+            this.DataContext = new sgbd_wpf.vue_modele.ListerEtudiantUeVueModele();
         }
     }
 }

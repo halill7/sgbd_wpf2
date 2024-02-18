@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Page_Navigation_App.Utilities
+namespace Utilities
 {
     class RelayCommand : ICommand
     {

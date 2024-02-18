@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Page_Navigation_App.View
+namespace View
 {
     /// <summary>
     /// Interaction logic for .xaml

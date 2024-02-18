@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Page_Navigation_App.Utilities
+namespace Utilities
 {
     public class Btn : RadioButton
     {

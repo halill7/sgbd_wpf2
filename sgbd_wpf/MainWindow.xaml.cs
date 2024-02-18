@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Page_Navigation_App
+namespace sgbd_wpf
+
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

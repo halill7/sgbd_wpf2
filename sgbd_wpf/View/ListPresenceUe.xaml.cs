@@ -13,17 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Page_Navigation_App.View
+namespace View
 {
     /// <summary>
-    /// Interaction logic for Shipments.xaml
+    /// Logique d'interaction pour ListPresenceUe.xaml
     /// </summary>
-    public partial class Shipments : UserControl
+    public partial class ListPresenceUe : UserControl
     {
-        public Shipments()
+        public ListPresenceUe()
         {
             InitializeComponent();
-            this.DataContext = new sgbd_wpf.vue_modele.GestionSeanceVueModele();
+            this.DataContext = new sgbd_wpf.vue_modele.ListerPresenceUeVueModele();
         }
     }
 }
