@@ -283,30 +283,23 @@ namespace sgbd_wpf.vue_modele
         {
             try
             {
-                int resultatAjout = monBD.ModifierResultat(this.Idue, this.Idpersonne, this.Resultat);
+                // Modifier le résultat dans la base de données
+                int resultatModification = monBD.ModifierResultat(this.Idue, this.Idpersonne, this.Resultat);
+
+                // Rechercher la ligne correspondante dans la table des inscriptions
+                DataRow[] rowsToUpdate = CollectionInscription.Table.Select($"Idue = {this.Idue} AND Idpersonne = {this.Idpersonne}");
+                foreach (DataRow rowToUpdate in rowsToUpdate)
                 {
-                    // mise à jour de la liste des catégorie affichée
-                    DataRow dr = CollectionInscription.Table.NewRow();
-                    dr["Idpersonne"] = this.inscris.Idpersonne;
-                    dr["Idue"] = this.inscris.Idue;
-                    dr["Resultat"] = this.inscris.Resultat;
-                    CollectionInscription.Table.Rows.Add(dr);
-
+                    // Mettre à jour le résultat dans la ligne correspondante
+                    rowToUpdate["Resultat"] = this.Resultat;
                 }
-
-                /**
-                this.Idpersonne = 0;
-                this.Idue = 0;
-                this.Resultat = 0;
-                **/
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(
-                "Une erreur est survenue pendant l'ajout du résultat :\n" +
+                    "Une erreur est survenue pendant la modification du résultat :\n" +
                     ex.Message,
-                 "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                    "Information", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

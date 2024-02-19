@@ -135,22 +135,6 @@ namespace sgbd_wpf.vue_modele
             }
         }
 
-        /*public void Modifier(int indexSelection)
-        {
-            IdPersonne =
-                collectionEtudiant.ElementAt(indexSelection).IdPersonne;
-            Nom = collectionEtudiant.ElementAt(indexSelection).Nom;
-            Prenom = collectionEtudiant.ElementAt(indexSelection).Prenom;
-            GSM = collectionEtudiant.ElementAt(indexSelection).Gsm;
-            Rue = collectionEtudiant.ElementAt(indexSelection).Rue;
-            CP = collectionEtudiant.ElementAt(indexSelection).Codepostal;
-            Localite =
-                collectionEtudiant.ElementAt(indexSelection).Localite;
-
-            // Mise à jour du bouton d'action
-            this.Effectuer = "Effectuer la modification";
-
-        }*/
 
         // Cette méthode met à vide les champs de la personne à modifier 
         private void Clear_personne()

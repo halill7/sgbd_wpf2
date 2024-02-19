@@ -218,7 +218,16 @@ namespace sgbd_wpf.vue_modele
                     DataRow dr = CollectionResultatUe.Table.NewRow();
                     dr["Idpersonne"] = i.Idpersonne;
                     dr["Idue"] = i.Idue;
-                    dr["Resultat"] = i.Resultat;
+                    if (i.Resultat == 0)
+                    {
+                        // Afficher 0 lorsque le statut est null
+                        dr["Resultat"] = 0;
+                    }
+                    else
+                    {
+                        // Sinon, afficher le statut normal
+                        dr["Resultat"] = i.Resultat;
+                    }
 
                     // Ajouter la ligne à la collection des UE
                     CollectionResultatUe.Table.Rows.Add(dr);

@@ -1363,50 +1363,44 @@ namespace projet_sgbd.couches_access_db
          */
         public List<Participation> ListePrésence(int idue)
         {
-            List<Participation> liste = null;
+            List<Participation> liste = new List<Participation>(); // Initialisation de la liste en dehors de la boucle
             NpgsqlCommand sqlCmd = new NpgsqlCommand();
 
             try
             {
-                sqlCmd = new NpgsqlCommand("select * " +
-                                            "from PARTICIPATION p " +
-                                            "JOIN ETUDIANT e ON e.idpersonne = p.idpersonne " +
-                                            "JOIN SEANCE s ON s.idue = p.idue " +
-                                            "WHERE s.idue = :idue", this.SqlConn);
+                sqlCmd = new NpgsqlCommand("SELECT DISTINCT * " +
+                                            "FROM PARTICIPATION p " +
+                                            "WHERE idue = :idue", this.SqlConn);
 
-                // Parametres
+                // Paramètres
                 sqlCmd.Parameters.Add(new NpgsqlParameter("idue", NpgsqlTypes.NpgsqlDbType.Integer));
-
-
                 sqlCmd.Parameters[0].Value = idue;
 
                 // Commande
                 sqlCmd.Prepare();
 
                 NpgsqlDataReader sqlreader = sqlCmd.ExecuteReader();
-                if (sqlreader.Read())
+
+                while (sqlreader.Read())
                 {
-                    liste = new List<Participation>();
-                    do
-                    {
-                        liste.Add(new Participation(Convert.ToInt32(sqlreader["idue"]),
-                                               Convert.ToInt32(sqlreader["idpersonne"]),
-                                               Convert.ToInt32(sqlreader["idseance"]),
-                                               Convert.ToString(sqlreader["statut"])));
-                    } while (sqlreader.Read());
+                    int idueParticipation = Convert.ToInt32(sqlreader["idue"]);
+                    int idpersonne = Convert.ToInt32(sqlreader["idpersonne"]);
+                    int idseance = Convert.ToInt32(sqlreader["idseance"]);
+                    string statut = Convert.ToString(sqlreader["statut"]);
+
+                    liste.Add(new Participation(idueParticipation, idpersonne, idseance, statut));
                 }
+
                 sqlreader.Close();
             }
-
             catch (Exception ex)
             {
-
                 throw new ExceptionAccessBD(sqlCmd.CommandText, ex);
-
-
             }
+
             return liste;
         }
+
 
 
         /* Liste les étudiants qui ont des ue en cours ou réussis en fonction de leur idpersonne
@@ -1439,10 +1433,18 @@ namespace projet_sgbd.couches_access_db
             {
                 do
                 {
-                    liste.Add(new Inscription(Convert.ToInt32(sqlreader["idue"]),
-                                           Convert.ToInt32(sqlreader["idpersonne"]),
-                                           Convert.ToInt32(sqlreader["resultat"])
-                                           ));
+                    if(sqlreader["resultat"] == DBNull.Value)
+                        {
+                            liste.Add(new Inscription(Convert.ToInt32(sqlreader["idue"]),
+                                           Convert.ToInt32(sqlreader["idpersonne"])));
+                        } else
+                        {
+                            liste.Add(new Inscription(Convert.ToInt32(sqlreader["idue"]),
+                       Convert.ToInt32(sqlreader["idpersonne"]),
+                       Convert.ToInt32(sqlreader["resultat"])
+                       ));
+                        }
+
                 } while (sqlreader.Read());
             }
             sqlreader.Close();

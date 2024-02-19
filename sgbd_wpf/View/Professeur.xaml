@@ -15,7 +15,9 @@
 
     <Grid>
 
-        <StackPanel VerticalAlignment="Center" Height="580" >
+
+
+        <StackPanel VerticalAlignment="Center">
             <DataGrid ItemsSource="{Binding CollectionProf}"
           AutoGenerateColumns="False"
           Name="GrilleLivres"
@@ -97,9 +99,9 @@
                         <TextBlock Margin="10" Width="80" Text="Localite" FontWeight="Light" Foreground="White"/>
                         <TextBox Width="120" Margin="10" Padding="3" Text="{Binding Localite, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
                     </StackPanel>
-                
 
-                
+
+
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="10" Width="80" Text="Matricule" FontWeight="Light" Foreground="White"/>
                         <TextBox Width="120" Margin="10" Padding="3" Text="{Binding Matricule, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />

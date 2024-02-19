@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Page_Navigation_App.couches_metier
+namespace projet_sgbd.couches_metier
 {
     class Prerequis
     {

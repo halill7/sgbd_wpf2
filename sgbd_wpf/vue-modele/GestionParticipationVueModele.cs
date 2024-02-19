@@ -226,31 +226,6 @@ namespace sgbd_wpf.vue_modele
         }
 
 
-        /**private void TextBoxChanged(object sender, TextChangedEventArgs eventArgs)
-        {
-            var tbx = sender as TextBox;
-            if (tbx != null)
-            {
-                // Vérifiez si le texte est un entier valide
-                if (int.TryParse(tbx.Text, out int searchTerm))
-                {
-                    // Convertir la liste d'entiers en une liste de chaînes
-                    var stringList = this.Idue.Select(x => x.ToString()).ToList();
-                    // Filtrer la liste de chaînes par la valeur entière recherchée
-                    var filteredList = stringList.Where(x => x.Contains(tbx.Text));
-                    // Convertir les chaînes filtrées en entiers
-                    var filteredIntegers = filteredList.Select(int.Parse);
-                    GRD.ItemsSource = null;
-                    // Réaffecter la source de données à la DataGrid
-                    GRD.ItemsSource = filteredIntegers;
-                }
-                else
-                {
-                    // Si le texte n'est pas un entier valide, afficher la collection complète
-                    GRD.ItemsSource = this.Idue;
-                }
-            }
-        }**/
 
 
 
