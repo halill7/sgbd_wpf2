@@ -234,7 +234,7 @@ namespace sgbd_wpf.vue_modele
         // Cette méthode met à vide les champs de la personne à modifier 
         private void Clear_personne()
         {
-            this.IdPersonne = -1;
+            this.IdPersonne = 0;
             this.Nom = null;
             this.Prenom = null;
             this.Gsm = null;
@@ -246,46 +246,51 @@ namespace sgbd_wpf.vue_modele
 
         // Cette méthode est utlisée lorsqu'on clique sur le bouton d'action
 
-        // méthode utilisée lorsqu'on clique sur le bouton Ajouter
 
-        public void Ajouter()
-        {
-            // Met les champs de la nouvelle personne à vide
-            this.Clear_personne();
-
-            // Mise à jour du bouton d'action
-            this.Effectuer = "Effectuer l'ajout";
-        }
 
 
 
         // faire une méthode pour mofidier une personne
+
+
         public void Execute_Modifier_Personne(object parameter)
         {
             try
             {
-                int resultatAjout = monBD.ModifierPersonne(this.personne);
+                // Récupérer les valeurs existantes de la base de données pour la personne
+                Personne personneExistante = monBD.InfoPersonne(this.personne.IdPersonne);
+
+                // Mise à jour des champs spécifiés uniquement
+                personneExistante.Nom = !string.IsNullOrEmpty(this.personne.Nom) ? this.personne.Nom : personneExistante.Nom;
+                personneExistante.Prenom = !string.IsNullOrEmpty(this.personne.Prenom) ? this.personne.Prenom : personneExistante.Prenom;
+                personneExistante.Gsm = !string.IsNullOrEmpty(this.personne.Gsm) ? this.personne.Gsm : personneExistante.Gsm;
+                personneExistante.Rue = !string.IsNullOrEmpty(this.personne.Rue) ? this.personne.Rue : personneExistante.Rue;
+                personneExistante.Codepostal = !string.IsNullOrEmpty(this.personne.Codepostal) ? this.personne.Codepostal : personneExistante.Codepostal;
+                personneExistante.Localite = !string.IsNullOrEmpty(this.personne.Localite) ? this.personne.Localite : personneExistante.Localite;
+
+                // Modifier la personne avec les valeurs mises à jour
+                int resultatAjout = monBD.ModifierPersonne(personneExistante);
+
+                // Mettre à jour la ligne correspondante dans la collection de personnes
+                DataRow[] rowsToUpdate = CollectionPersonne.Table.Select("IdPersonne = " + this.personne.IdPersonne);
+                foreach (DataRow rowToUpdate in rowsToUpdate)
                 {
-                    // mise à jour de la liste des catégorie affichée
-                    DataRow dr = CollectionPersonne.Table.NewRow();
-                    dr["Idpersonne"] = this.personne.IdPersonne;
-                    dr["Nom"] = this.personne.Nom;
-                    dr["Prenom"] = this.personne.Prenom;
-                    dr["Gsm"] = this.personne.Gsm;
-                    dr["Rue"] = this.personne.Rue;
-                    dr["Codepostal"] = this.personne.Codepostal;
-                    dr["Localite"] = this.personne.Localite;
-                    CollectionPersonne.Table.Rows.Add(dr);
-
+                    // Mettre à jour les valeurs des champs spécifiés dans la ligne correspondante
+                    if (!string.IsNullOrEmpty(this.personne.Nom))
+                        rowToUpdate["Nom"] = personneExistante.Nom;
+                    if (!string.IsNullOrEmpty(this.personne.Prenom))
+                        rowToUpdate["Prenom"] = personneExistante.Prenom;
+                    if (!string.IsNullOrEmpty(this.personne.Gsm))
+                        rowToUpdate["Gsm"] = personneExistante.Gsm;
+                    if (!string.IsNullOrEmpty(this.personne.Rue))
+                        rowToUpdate["Rue"] = personneExistante.Rue;
+                    if (!string.IsNullOrEmpty(this.personne.Codepostal))
+                        rowToUpdate["Codepostal"] = personneExistante.Codepostal;
+                    if (!string.IsNullOrEmpty(this.personne.Localite))
+                        rowToUpdate["Localite"] = personneExistante.Localite;
                 }
-
-                /**
-                this.Idpersonne = 0;
-                this.Idue = 0;
-                this.Resultat = 0;
-                **/
+                Clear_personne();
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(
@@ -295,11 +300,25 @@ namespace sgbd_wpf.vue_modele
             }
         }
 
-        // Le nom de la catégorie doit au moins avoir 3 caractères
+
+
+
+
+
         public bool CanExecute_Modifier_Personne(object parameter)
         {
-            return true;
+            // Vérifier si l'ID de la personne est différent de zéro
+            if (this.personne.IdPersonne != 0)
+            {
+                return true; 
+            }
+            else
+            {
+                return false;
+            }
         }
+
+
 
     }
 }

@@ -221,6 +221,48 @@ namespace projet_sgbd.couches_access_db
         }
 
 
+        /* Supprime une section
+         * 
+         * Entrée: 
+         * Un objet section
+         * Sortie : 
+         * Un entier qui confirme la réussite ou l'échec de la méthode
+         */
+        public int SupprimerSection(Section section)
+        {
+            NpgsqlCommand sqlCmd = null;
+
+            try
+            {
+
+                sqlCmd = new NpgsqlCommand("DELETE from section WHERE libelle = :libelle"
+                , this.SqlConn);
+
+
+
+
+                // Ajouter les parametres
+
+                sqlCmd.Parameters.Add(new NpgsqlParameter("libelle", NpgsqlTypes.NpgsqlDbType.Varchar));
+
+
+
+                // Prepare la commande
+                sqlCmd.Prepare();
+
+                //Ajouter les valeurs aux parametres
+                sqlCmd.Parameters[0].Value = section.Libelle;
+
+
+                return (sqlCmd.ExecuteNonQuery());
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionAccessBD(sqlCmd.CommandText, ex);
+            }
+        }
+
+
         /* Ajoute une ue
          * 
          * Entrée: 
@@ -1273,7 +1315,7 @@ namespace projet_sgbd.couches_access_db
                            "FROM INSCRIPTION i " +
                            "JOIN UEACADEMIQUE u ON i.idue = u.idue " +
                            "JOIN ETUDIANT e ON i.idpersonne = e.idpersonne " +
-                       "WHERE u.idue = :idue AND u.datefin = :datefin", this.SqlConn);
+                       "WHERE u.idue = :idue AND :datefin BETWEEN u.datedebut AND u.datefin", this.SqlConn);
                 // Parametres
                 sqlCmd.Parameters.Add(new NpgsqlParameter("idue", NpgsqlTypes.NpgsqlDbType.Integer));
                 sqlCmd.Parameters.Add(new NpgsqlParameter("datefin", NpgsqlTypes.NpgsqlDbType.Date));

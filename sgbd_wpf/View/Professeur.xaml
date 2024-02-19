@@ -26,7 +26,6 @@
           Width="500"
           ScrollViewer.VerticalScrollBarVisibility="Auto"
           ScrollViewer.HorizontalScrollBarVisibility="Auto"
-
           BorderBrush="#FF2196F3"
           BorderThickness="1">
                 <DataGrid.ColumnHeaderStyle>

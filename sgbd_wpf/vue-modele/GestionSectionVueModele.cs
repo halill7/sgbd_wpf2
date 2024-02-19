@@ -72,10 +72,13 @@ namespace sgbd_wpf.vue_modele
 
         public ICommand Click_Ajouter_Section { get; set; }
 
+        public ICommand Click_Supprimer_Section { get; set; }
+
 
         public GestionSectionVueModele()
         {
             Click_Ajouter_Section = new CommandMenu(onExecuteMethod: Execute_Ajouter_Section, onCanExecuteMethod: CanExecute_Ajouter_Section);
+            Click_Supprimer_Section = new CommandMenu(onExecuteMethod: Execute_Supprimer_Section, onCanExecuteMethod: CanExecute_Supprimer_Section);
             section = new Section();
             monBD = new AccesBD();
             List<Section> listSection;
@@ -125,7 +128,7 @@ namespace sgbd_wpf.vue_modele
 
 
 
-        // ajout de la catégorie dans la BD
+        // ajout de la section dans la BD
         public void Execute_Ajouter_Section(object parameter)
         {
             try
@@ -150,11 +153,42 @@ namespace sgbd_wpf.vue_modele
             }
         }
 
-        // Le nom de la catégorie doit au moins avoir 3 caractères
         public bool CanExecute_Ajouter_Section(object parameter)
         {
                 return true;
         }
-    
-}
+
+
+        // supression de la section dans la BD
+        public void Execute_Supprimer_Section(object parameter)
+        {
+            try
+            {
+                int supprimerAjout = monBD.SupprimerSection(this.section);
+
+                // Supprimer la section de la liste des catégories affichées
+                DataRow[] rowsToDelete = CollectionSection.Table.Select("Libelle = '" + this.section.Libelle + "'");
+                foreach (DataRow rowToDelete in rowsToDelete)
+                {
+                    CollectionSection.Table.Rows.Remove(rowToDelete);
+                }
+
+                this.Libelle = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Une erreur est survenue pendant la suppression de la section :\n" +
+                    ex.Message,
+                    "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        public bool CanExecute_Supprimer_Section(object parameter)
+        {
+            return true;
+        }
+
+    }
 }
