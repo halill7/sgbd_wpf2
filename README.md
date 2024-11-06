@@ -1,51 +1,44 @@
-School Management System
-Description
-The School Management System is a robust application designed to simplify the management of students, professors, academic units, and attendance records within educational institutions. Developed in C# with PostgreSQL as the database management system, this software aims to enhance operational efficiency and streamline administrative tasks.
+# School Management System
 
-Fonctionnalités
-Student Management :
+## Description
+The **School Management System** is a comprehensive application designed to streamline the administrative functions of educational institutions, focusing on the management of students, professors, academic units, and attendance records. Developed using **C#** with **PostgreSQL** as the database management system, this software aims to enhance efficiency and simplify daily operational tasks.
 
-Add, update, and delete student records.
-Enroll students in specific academic units (UE) and track their academic progress.
-Professor Management :
+## Features
 
-Add, update, and manage professor profiles.
-Assign professors to specific academic units (UE).
-Academic Unit (UE) Management :
+### Student Management
+- Add, update, and delete student records.
+- Enroll students in specific academic units (UE) and monitor their academic progress.
 
-Create and organize academic units (UE) and link them to students and professors.
-Manage academic offerings and student enrollment in each UE.
-Attendance Tracking :
+### Professor Management
+- Add, update, and manage professor profiles.
+- Assign professors to specific academic units (UE).
 
-Record and monitor student attendance across different academic units (UE).
-Student Listing and Filtering :
+### Academic Unit (UE) Management
+- Create and organize academic units and link them to students and professors.
+- Manage academic offerings and track student enrollment in each UE.
 
-List students based on selected criteria such as enrolled course (UE), attendance, or academic results.
-Technologies Utilisées
-Langage de Programmation : C#
-Base de Données : PostgreSQL
-Environnement de Développement : Visual Studio
-Framework : .NET Framework
-Installation
-Prérequis
-Avant de commencer, assurez-vous d'avoir installé :
+### Attendance Tracking
+- Record and monitor student attendance across different academic units.
 
-.NET Framework sur votre machine.
-PostgreSQL installé et configuré.
-Étapes d'Installation
-Clonez le repository :
+### Student Listing and Filtering
+- List students based on criteria such as enrolled course (UE), attendance, or academic results.
 
-bash
-Copier le code
-git clone <lien_du_repository>
-cd school-management-system
-Configuration de la Base de Données :
+## Technologies Used
+- **Programming Language:** C#
+- **Database:** PostgreSQL
+- **Development Environment:** Visual Studio
+- **Framework:** .NET Framework
 
-Configurez PostgreSQL et créez une base de données pour le projet.
-Exécutez les scripts SQL fournis pour initialiser la structure de la base de données (si disponibles).
-Mettez à jour la chaîne de connexion dans les fichiers de configuration du projet si nécessaire.
-Exécution de l'Application :
+## Installation
 
-Ouvrez le fichier de solution dans Visual Studio.
-Compilez le projet pour restaurer les dépendances et générer le code.
-Exécutez l'application à partir de Visual Studio.
+### Prerequisites
+Before starting, make sure you have the following installed on your machine:
+- **.NET Framework**
+- **PostgreSQL**, installed and configured
+
+### Installation Steps
+
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository_link>
+   cd school-management-system
